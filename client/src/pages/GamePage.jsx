@@ -66,18 +66,21 @@ const GamePage = () => {
           ? "Good job, my friend! You finally did it!"
           : "Guess the number between 1 and 20"}
       </p>
-      <div className="input-box">
-        <input
-          type="text"
-          inputMode="numeric"
-          value={number}
-          onChange={(e) => setNumber(e.target.value)}
-          className="input"
-        />
-        <button onClick={handleGuess} className="button button--small button--guess">
-          Guess
-        </button>
-      </div>
+      {!isGuessed && (
+        <div className="input-box">
+          <input
+            type="text"
+            inputMode="numeric"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            className="input"
+          />
+          <button onClick={handleGuess} className="button button--small button--guess">
+            Guess
+          </button>
+        </div>
+      )}
+
       {loading && <div>Loading...</div>}
       {message && !isGuessed && !loading && (
         <p className={`label label--false`}>{message}</p>
