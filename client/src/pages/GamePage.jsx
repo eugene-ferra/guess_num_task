@@ -23,7 +23,7 @@ const GamePage = () => {
     if (isRestart) {
       setMessage(null);
       setIsGuessed(false);
-      setNumber(null);
+      setNumber("");
       setIsRestart(false);
 
       fetch("/api/start_game", {
@@ -54,13 +54,18 @@ const GamePage = () => {
         setLoading(false);
         setMessage(data.message);
         setIsGuessed(data.isGuessed);
+        setNumber("");
       });
   };
 
   return (
     <div className="box">
-      <h1 className="title title--big">Game created!</h1>
-      <p className="text">Guess the number between 1 and 20</p>
+      <h1 className="title title--big">{isGuessed ? "You won!🎉" : "Game created!"}</h1>
+      <p className="text">
+        {isGuessed
+          ? "Good job, my friend! You finally did it!"
+          : "Guess the number between 1 and 20"}
+      </p>
       <div className="input-box">
         <input
           type="text"
